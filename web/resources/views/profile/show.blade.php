@@ -3,6 +3,8 @@
 @section('title', 'Mon Profil')
 
 @section('content')
+@auth
+    
 <div class="bg-gray-50 min-h-screen pb-20">
     <!-- Profile Header -->
     <div class="bg-white shadow-lg border-b border-gray-100">
@@ -10,14 +12,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="-mt-16 flex flex-col md:flex-row items-end md:items-end gap-6 pb-6">
                 <div class="relative group">
-                    <img class="h-32 w-32 rounded-3xl ring-4 ring-white shadow-xl object-cover" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Avatar">
+                    <img class="h-32 w-32 rounded-3xl ring-4 ring-white shadow-xl object-cover" src="https://i.pinimg.com/736x/e0/7c/60/e07c603a29b52fea4e78ed1419f49f19.jpg" alt="Avatar">
                     <button class="absolute bottom-2 right-2 bg-white p-1.5 rounded-lg shadow-sm text-gray-500 hover:text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     </button>
                 </div>
                 
-                <div class="flex-grow text-center md:text-left mb-2">
-                    <h1 class="text-3xl font-extrabold text-gray-900">Achraf CHAOUB</h1>
+                <div class="mt-[30px] flex-grow text-center md:text-left mb-2">
+                    <h1 class="text-3xl font-extrabold text-gray-900">{{ Auth::user()->name }}</h1>
                     <p class="text-gray-500 font-medium">Passionné de cuisine • Membre depuis Janvier 2026</p>
                 </div>
 
@@ -30,7 +32,6 @@
                     </button>
                 </div>
             </div>
-
             <!-- Stats -->
             <div class="grid grid-cols-3 gap-8 py-8 border-t border-gray-100 max-w-2xl">
                 <div class="text-center md:text-left">
@@ -121,3 +122,4 @@
     </div>
 </div>
 @endsection
+@endauth
