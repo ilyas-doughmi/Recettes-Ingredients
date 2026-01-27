@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
-
+use Illuminate\Container\Attributes\Auth;
 
 Route::get('/', function () {
     return view('home');
@@ -21,6 +21,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/logout',[AuthController::class,'logout']);
 
 
 // Recipe Routes
