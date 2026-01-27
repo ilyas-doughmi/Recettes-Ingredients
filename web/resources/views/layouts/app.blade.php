@@ -94,12 +94,27 @@
                         </a>
                     </div>
                 </div>
+                @guest
                 <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
                     <a href="{{ url('/login') }}" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Connexion</a>
                     <a href="{{ url('/register') }}" class="bg-primary-600 text-white hover:bg-primary-700 px-5 py-2.5 rounded-xl font-medium shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transform hover:-translate-y-0.5 transition-all duration-200">
                         Inscription
                     </a>
                 </div>
+                @endguest
+
+                @auth
+                <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
+                    <a href="{{ url('/profile') }}" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Profile</a>
+                    <form action="/logout" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="text-gray-600 hover:text-primary-600 font-medium transition-colors cursor-pointer">
+                            Logout
+                        </button>
+                    </form>                    
+                </div>
+
+                @endauth
                 
                 <!-- Mobile menu button -->
                 <div class="-mr-2 flex items-center sm:hidden">
