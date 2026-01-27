@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -12,17 +14,14 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::post('/login', function () {
-    return redirect('/');
-});
+Route::post('/login', [AuthController::class,'login']);
 
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::post('/register', function () {
-    return redirect('/');
-});
+Route::post('/register', [AuthController::class, 'register']);
+
 
 // Recipe Routes
 Route::get('/recipes', function () {
