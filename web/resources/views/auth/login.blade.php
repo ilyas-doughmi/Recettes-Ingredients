@@ -6,7 +6,7 @@
 <div class="min-h-[calc(100vh-80px)] flex">
     <!-- Left Side - Image -->
     <div class="hidden lg:block lg:w-1/2 relative overflow-hidden">
-        <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Cuisine">
+        <img class="absolute inset-0 h-full w-full object-cover" src="https://plus.unsplash.com/premium_photo-1680291971376-ccc54aacb22b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cuisine">
         <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 flex flex-col justify-center px-12 text-white">
             <h2 class="text-4xl font-extrabold mb-6">Rejoignez la plus grande communauté de chefs amateurs.</h2>
             <p class="text-lg text-gray-200 mb-8 max-w-md">Découvrez des milliers de recettes, partagez vos créations et échangez avec des passionnés.</p>
