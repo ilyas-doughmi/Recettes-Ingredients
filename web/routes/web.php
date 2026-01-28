@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RecetteController;
 use Illuminate\Container\Attributes\Auth;
 
 Route::get('/', function () {
@@ -34,9 +35,7 @@ Route::get('/recipes/create', function () {
     return view('recipes.create');
 });
 
-Route::post('/recipes', function () {
-    return redirect('/recipes');
-});
+Route::post('/recipes',[RecetteController::class,'create']);
 
 Route::get('/recipes/{id}', function ($id) {
     return view('recipes.show', ['id' => $id]);
