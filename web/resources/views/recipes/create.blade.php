@@ -63,7 +63,7 @@
                                 <div class="flex text-sm text-gray-600 justify-center">
                                     <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
                                         <span>Télécharger une image</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                        <input id="file-upload" name="image" type="file" class="sr-only">
                                     </label>
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG jusqu'à 10MB</p>
