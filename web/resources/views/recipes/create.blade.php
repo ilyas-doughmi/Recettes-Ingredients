@@ -32,10 +32,10 @@
                     <div>
                         <label for="category" class="block text-sm font-bold text-gray-700 mb-2">Catégorie</label>
                         <select id="category" name="category" class="block w-full border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 py-3 px-4">
-                            <option value="entree">🥗 Entrée</option>
-                            <option value="plat">🍗 Plat Principal</option>
-                            <option value="dessert">🍰 Dessert</option>
-                            <option value="boisson">🍹 Boisson</option>
+                            <option value="">Sélectionnez une catégorie</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -85,7 +85,7 @@
 
                 <div class="space-y-4" id="ingredients-list">
                     <div class="flex gap-4 items-center">
-                        <div class="flex-grow relative">
+                        <div class="grow relative">
                             <input type="text" name="ingredients[]" class="block w-full border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 py-3 px-4 pl-10" placeholder="ex: 200g de farine">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span class="text-gray-400">•</span>
@@ -96,7 +96,7 @@
                         </button>
                     </div>
                     <div class="flex gap-4 items-center">
-                        <div class="flex-grow relative">
+                        <div class="grow relative">
                             <input type="text" name="ingredients[]" class="block w-full border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 py-3 px-4 pl-10" placeholder="ex: 3 oeufs">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span class="text-gray-400">•</span>
