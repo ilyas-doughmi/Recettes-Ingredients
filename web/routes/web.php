@@ -27,13 +27,11 @@ Route::post('/logout',[AuthController::class,'logout']);
 
 
 // Recipe Routes
-Route::get('/recipes', function () {
-    return view('recipes.index');
-});
 
-Route::get('/recipes/create', function () {
-    return view('recipes.create');
-});
+Route::get('/recipes',[RecetteController::class,'getAllRecettes']);
+
+use App\Http\Controllers\CategorieController;
+Route::get('/recipes/create', [CategorieController::class, 'index']);
 
 Route::post('/recipes',[RecetteController::class,'create']);
 
