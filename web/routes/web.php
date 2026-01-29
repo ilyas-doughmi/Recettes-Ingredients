@@ -31,9 +31,11 @@ Route::post('/logout',[AuthController::class,'logout']);
 Route::get('/recipes',[RecetteController::class,'getAllRecettes']);
 
 use App\Http\Controllers\CategorieController;
-Route::get('/recipes/create', [CategorieController::class, 'index']);
+Route::get('/recipes/create', [CategorieController::class, 'index'])
+->middleware('auth');
 
-Route::post('/recipes',[RecetteController::class,'create']);
+Route::post('/recipes',[RecetteController::class,'create'])
+->middleware('auth');
 
 Route::get('/recipes/{id}', function ($id) {
     return view('recipes.show', ['id' => $id]);
@@ -42,4 +44,5 @@ Route::get('/recipes/{id}', function ($id) {
 // Profile Routes
 Route::get('/profile', function () {
     return view('profile.show');
-});
+})
+->middleware('auth');
