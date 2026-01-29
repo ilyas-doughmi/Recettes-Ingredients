@@ -15,7 +15,8 @@ class Recipe extends Model
         'ingredients',
         'difficulte',
         'categorie_id',
-        'image'
+        'image',
+        'user_id'
     ];
 
     protected $cast = [
