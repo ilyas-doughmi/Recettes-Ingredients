@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipe;
+use App\Models\categories;
 
 class RecetteController extends Controller
 {
@@ -15,6 +16,13 @@ class RecetteController extends Controller
         $myRecipes = $user->recipes()->get();
         return view('profile.show', ['recettes' => $myRecipes]);
     }   
+
+    public function getAllRecettes()
+    {
+        $recipes = Recipe::all();
+        $categories = categories::all();
+        return view('recipes.index',['recettes' => $recipes,'categories'=> $categories]);
+    }
 
     public function create(Request $request)
     {
@@ -42,6 +50,6 @@ class RecetteController extends Controller
             'ingredients' => json_encode($request->ingredients)
         ]);
 
-        return redirect()->route('recipes.index?message=success');
+        return redirect('/recipes');
     }
 }
