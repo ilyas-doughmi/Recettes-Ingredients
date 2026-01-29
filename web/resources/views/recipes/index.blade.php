@@ -105,22 +105,7 @@
             @endforelse
         </div>
 
-        <!-- Pagination -->
-        <div class="mt-16 flex justify-center">
-            <nav class="flex items-center space-x-2">
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-colors">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                </a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary-600 text-white font-bold shadow-lg shadow-primary-500/30">1</a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors">2</a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors">3</a>
-                <span class="text-gray-400">...</span>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors">12</a>
-                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-colors">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </nav>
-        </div>
+
     </div>
 </div>
 @endsection
