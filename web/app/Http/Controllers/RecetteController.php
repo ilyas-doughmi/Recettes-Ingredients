@@ -17,9 +17,14 @@ class RecetteController extends Controller
         return view('profile.show', ['recettes' => $myRecipes]);
     }   
 
-    public function getAllRecettes()
+    public function getAllRecettes(Request $request)
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::query()
+        ->when($request->categorie, function($query,$category){
+            $query->whereRelation('categorie','name',$category);
+        })
+        ->get();
+        
         $categories = categories::all();
         return view('recipes.index',['recettes' => $recipes,'categories'=> $categories]);
     }
