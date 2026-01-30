@@ -33,4 +33,9 @@ class Recipe extends Model
     {
         return $this->belongsTo(categories::class, 'categorie_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'recetteid')->latest();
+    }
 }
