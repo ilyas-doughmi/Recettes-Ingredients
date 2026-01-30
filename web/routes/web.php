@@ -39,11 +39,10 @@ Route::post('/recipes',[RecetteController::class,'create'])
 
 Route::post('/recipes/{id}/comment', [RecetteController::class, 'storeComment'])->name('recipes.comment')->middleware('auth');
 
+Route::post('/recipes/{id}/like', [RecetteController::class, 'toggleLike'])->name('recipes.like')->middleware('auth');
+
 Route::get('/recipes/{id}', [RecetteController::class,'getRecetteInfo']);
 
 
 // Profile Routes
-Route::get('/profile', function () {
-    return view('profile.show');
-})
-->middleware('auth');
+Route::get('/profile', [RecetteController::class, 'index'])->middleware('auth')->name('profile');
