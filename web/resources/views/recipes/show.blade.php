@@ -101,7 +101,7 @@
 
                 <!-- Comments -->
                 <div class="bg-white rounded-3xl shadow-lg p-8 md:p-10 border border-gray-100">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-8">Discussions (3)</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-8">Discussions ({{ $recipe->comments->count() }})</h2>
 
                     @auth
                     
@@ -109,8 +109,9 @@
                     <div class="flex gap-4 mb-10">
                         <img class="h-12 w-12 rounded-full border border-gray-200" src="https://ui-avatars.com/api/{{ Auth::user()->name}}" alt="User">
                         <div class="flex-grow">
-                            <form class="relative">
-                                <textarea id="comment" name="comment" rows="3" class="block w-full border-2 border-gray-100 rounded-2xl p-4 focus:ring-0 focus:border-primary-500 focus:bg-gray-50 transition-colors resize-none" placeholder="Partagez votre avis ou posez une question..."></textarea>
+                            <form class="relative" method="POST" action="{{ route('recipes.comment', $recipe->id) }}">
+                                @csrf
+                                <textarea id="comment" name="comment" rows="3" class="block w-full border-2 border-gray-100 rounded-2xl p-4 focus:ring-0 focus:border-primary-500 focus:bg-gray-50 transition-colors resize-none" placeholder="Partagez votre avis ou posez une question..." required></textarea>
                                 <div class="absolute bottom-2 right-2">
                                     <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-xl text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors">
                                         Publier
@@ -125,33 +126,25 @@
 
                     <!-- Comment List -->
                     <div class="space-y-8">
+                        @foreach($recipe->comments as $comment)
                         <div class="flex gap-4">
                             <div class="flex-shrink-0">
-                                <img class="h-12 w-12 rounded-full border border-gray-200" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="">
+                                <img class="h-12 w-12 rounded-full border border-gray-200" src="https://ui-avatars.com/api/{{ $comment->user->name }}" alt="">
                             </div>
                             <div>
                                 <div class="flex items-baseline gap-2">
-                                    <span class="text-sm font-bold text-gray-900">Sophie L.</span>
-                                    <span class="text-xs text-gray-400">Il y a 2 jours</span>
+                                    <span class="text-sm font-bold text-gray-900">{{ $comment->user->name }}</span>
+                                    <span class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
-                                <p class="mt-2 text-gray-700 bg-gray-50 p-4 rounded-r-2xl rounded-bl-2xl">Délicieux ! J'ai ajouté un peu de citron dans la marinade, c'était parfait.</p>
-                                <button class="text-xs text-gray-500 font-medium mt-2 hover:text-primary-600">Répondre</button>
+                                <p class="mt-2 text-gray-700 bg-gray-50 p-4 rounded-r-2xl rounded-bl-2xl">{{ $comment->comment }}</p>
+                                <!-- <button class="text-xs text-gray-500 font-medium mt-2 hover:text-primary-600">Répondre</button> -->
                             </div>
                         </div>
-
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0">
-                                <img class="h-12 w-12 rounded-full border border-gray-200" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=100&h=100" alt="">
-                            </div>
-                            <div>
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-sm font-bold text-gray-900">Marc D.</span>
-                                    <span class="text-xs text-gray-400">Il y a 1 semaine</span>
-                                </div>
-                                <p class="mt-2 text-gray-700 bg-gray-50 p-4 rounded-r-2xl rounded-bl-2xl">Très bonne recette, simple et efficace. Toute la famille a adoré.</p>
-                                <button class="text-xs text-gray-500 font-medium mt-2 hover:text-primary-600">Répondre</button>
-                            </div>
-                        </div>
+                        @endforeach
+                        
+                        @if($recipe->comments->count() == 0)
+                            <p class="text-gray-500 italic">Soyez le premier à commenter cette recette !</p>
+                        @endif
                     </div>
                 </div>
             </div>
