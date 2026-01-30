@@ -38,4 +38,14 @@ class Recipe extends Model
     {
         return $this->hasMany(Comment::class, 'recetteid')->latest();
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'recetteid');
+    }
+
+    public function isLikedBy(User $user)
+    {
+        return $this->likes()->where('userId', $user->id)->exists();
+    }
 }
