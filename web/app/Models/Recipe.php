@@ -19,7 +19,7 @@ class Recipe extends Model
         'user_id'
     ];
 
-    protected $cast = [
+    protected $casts = [
         'ingredients' => 'array',
         'steps' => 'array',
     ];
