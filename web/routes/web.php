@@ -37,9 +37,8 @@ Route::get('/recipes/create', [CategorieController::class, 'index'])
 Route::post('/recipes',[RecetteController::class,'create'])
 ->middleware('auth');
 
-Route::get('/recipes/{id}', function ($id) {
-    return view('recipes.show', ['id' => $id]);
-});
+Route::get('/recipes/{id}', [RecetteController::class,'getRecetteInfo']);
+
 
 // Profile Routes
 Route::get('/profile', function () {
