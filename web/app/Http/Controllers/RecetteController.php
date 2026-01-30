@@ -66,4 +66,21 @@ class RecetteController extends Controller
 
         return redirect('/recipes');
     }
+
+    public function storeComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string',
+        ]);
+
+        $recipe = Recipe::findOrFail($id);
+
+         \App\Models\Comment::create([
+            'userId' => Auth::id(),
+            'recetteid' => $recipe->id,
+            'comment' => $request->comment,
+        ]);
+
+        return back();
+    }
 }
