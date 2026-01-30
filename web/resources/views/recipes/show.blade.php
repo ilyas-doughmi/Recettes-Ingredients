@@ -102,10 +102,12 @@
                 <!-- Comments -->
                 <div class="bg-white rounded-3xl shadow-lg p-8 md:p-10 border border-gray-100">
                     <h2 class="text-2xl font-bold text-gray-900 mb-8">Discussions (3)</h2>
+
+                    @auth
                     
                     <!-- Comment Form -->
                     <div class="flex gap-4 mb-10">
-                        <img class="h-12 w-12 rounded-full border border-gray-200" src="https://ui-avatars.com/api/?name=User&background=random" alt="User">
+                        <img class="h-12 w-12 rounded-full border border-gray-200" src="https://ui-avatars.com/api/{{ Auth::user()->name}}" alt="User">
                         <div class="flex-grow">
                             <form class="relative">
                                 <textarea id="comment" name="comment" rows="3" class="block w-full border-2 border-gray-100 rounded-2xl p-4 focus:ring-0 focus:border-primary-500 focus:bg-gray-50 transition-colors resize-none" placeholder="Partagez votre avis ou posez une question..."></textarea>
@@ -117,6 +119,9 @@
                             </form>
                         </div>
                     </div>
+
+                    @endauth
+
 
                     <!-- Comment List -->
                     <div class="space-y-8">
