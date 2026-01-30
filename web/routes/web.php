@@ -37,6 +37,8 @@ Route::get('/recipes/create', [CategorieController::class, 'index'])
 Route::post('/recipes',[RecetteController::class,'create'])
 ->middleware('auth');
 
+Route::post('/recipes/{id}/comment', [RecetteController::class, 'storeComment'])->name('recipes.comment')->middleware('auth');
+
 Route::get('/recipes/{id}', [RecetteController::class,'getRecetteInfo']);
 
 
