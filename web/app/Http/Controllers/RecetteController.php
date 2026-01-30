@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipe;
+use App\Models\User;
 use App\Models\categories;
 
 class RecetteController extends Controller
@@ -27,6 +28,14 @@ class RecetteController extends Controller
         
         $categories = categories::all();
         return view('recipes.index',['recettes' => $recipes,'categories'=> $categories]);
+    }
+
+    public function getRecetteInfo($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        $category = categories::findOrFail($recipe->categorie_id);
+        $user = User::findOrfail($recipe->user_id);
+        return view('recipes.show' , ['recipe' =>$recipe,'user'=>$user,'category' => $category]);
     }
 
     public function create(Request $request)
