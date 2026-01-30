@@ -12,10 +12,40 @@ class RecetteController extends Controller
 {
     public function index()
     {
-        $user =Auth::user();
+        $user = Auth::user();
 
-        $myRecipes = $user->recipes()->get();
-        return view('profile.show', ['recettes' => $myRecipes]);
+        $myRecipes = $user->recipes()->latest()->get();
+        $myFavorites = $user->favorites()->latest()->get();
+        $myComments = $user->comments()->with('recipe')->latest()->get();
+
+        return view('profile.show', [
+            'recettes' => $myRecipes,
+            'favorites' => $myFavorites,
+            'comments' => $myComments
+        ]);
+    }
+
+    public function toggleLike($id)
+    {
+        $user = Auth::user();
+        $recipe = Recipe::findOrFail($id);
+
+        $like = \App\Models\Like::where('userId', $user->id)
+                                ->where('recetteid', $recipe->id)
+                                ->first();
+
+        if ($like) {
+            $like->delete();
+            $message = 'Recette retirée des favoris';
+        } else {
+            \App\Models\Like::create([
+                'userId' => $user->id,
+                'recetteid' => $recipe->id
+            ]);
+            $message = 'Recette ajoutée aux favoris';
+        }
+
+        return back();
     }   
 
     public function getAllRecettes(Request $request)
