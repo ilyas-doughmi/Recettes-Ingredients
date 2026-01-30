@@ -8,12 +8,18 @@ use App\Models\User;
 class Comment extends Model
 {
     protected $fillable = [
-        'user_id' ,
+        'userId',
+        'recetteid',
         'comment'
     ];
 
-    public function User()
+    public function user()
     {
-        $this->belongsTo(User::class,'userId');
+        return $this->belongsTo(User::class, 'userId');
+    }
+
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class, 'recetteid');
     }
 }
