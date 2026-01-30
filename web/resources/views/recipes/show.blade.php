@@ -37,10 +37,20 @@
                     <!-- Actions Bar -->
                     <div class="flex justify-between items-center mb-8 pb-8 border-b border-gray-100">
                         <div class="flex space-x-4">
-                            <button class="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 font-bold hover:bg-red-100 transition-colors">
+                            @auth
+                            <form action="{{ route('recipes.like', $recipe->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="flex items-center gap-2 px-4 py-2 rounded-xl {{ $recipe->isLikedBy(Auth::user()) ? 'bg-red-100 text-red-600' : 'bg-gray-50 text-gray-600' }} font-bold hover:bg-red-50 hover:text-red-600 transition-colors">
+                                    <svg class="h-5 w-5 {{ $recipe->isLikedBy(Auth::user()) ? 'fill-current' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    {{ $recipe->isLikedBy(Auth::user()) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
+                                </button>
+                            </form>
+                            @else
+                            <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 text-gray-600 font-bold hover:bg-red-50 hover:text-red-600 transition-colors">
                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                Sauvegarder
-                            </button>
+                                Ajouter aux favoris
+                            </a>
+                            @endauth
                         </div>
                         <button class="text-gray-400 hover:text-gray-900 transition-colors">
                             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
